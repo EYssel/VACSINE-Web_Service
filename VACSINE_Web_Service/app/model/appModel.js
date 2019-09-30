@@ -1,5 +1,5 @@
 'user strict';
-var sql = require('C:/Users/EstianMSI/Desktop/Akademie/Semester 2/ITRW324/VACSINE_Web_Service/VACSINE-Web_Service/VACSINE_Web_Service/db.js');
+var sql = require('../db.js');
 
 //Task object constructor
 var Task = function(task){
