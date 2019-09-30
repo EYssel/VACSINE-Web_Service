@@ -19,12 +19,12 @@ exports.create_a_user = function(req, res) {
   var new_user = new User(req.body);
 
   //handles null error 
-  if(!new_user.user || !new_user.status){
+  //if(!new_user.user || !new_user.status){
 
-    res.status(400).send({ error:true, message: 'Please provide user/status' });
+    //res.status(400).send({ error:true, message: 'Please provide user/status' });
 
-}
-else{
+//}
+//else{
 
 User.createUser(new_user, function(err, user) {
 
@@ -33,7 +33,7 @@ res.send(err);
 res.json(user);
 });
 }
-};
+;
 
 
 exports.read_a_user = function(req, res) {
