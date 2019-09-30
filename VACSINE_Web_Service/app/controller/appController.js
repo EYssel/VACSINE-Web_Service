@@ -10,7 +10,7 @@ exports.list_all_users = function(req, res) {
       res.send(err);
       console.log('res', user);
     res.send(user);
-  });
+  });audit 
 };
 
 

@@ -3,7 +3,7 @@ var sql = require('../db.js');
 
 //User object constructor
 var User = function(user){
-    this.user = user.user;
+    //this.user = user.user;
     this.first_name = user.first_name;
     this.last_name = user.last_name;
     this.email = user.email;
@@ -21,8 +21,8 @@ User.createUser = function (newUser, result) {
                 }
             });           
 };
-/*User.getUserById = function (user_id, result) {
-        sql.query("Select user from users where id = ? ", user_id, function (err, res) {             
+User.getUserById = function (user_id, result) {
+        sql.query("Select * from user where user_id = ? ", user_id, function (err, res) {             
                 if(err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -34,7 +34,7 @@ User.createUser = function (newUser, result) {
             });   
 };
 User.getAllUser = function (result) {
-        sql.query("Select * from users", function (err, res) {
+        sql.query("Select * from user", function (err, res) {
 
                 if(err) {
                     console.log("error: ", err);
@@ -48,7 +48,7 @@ User.getAllUser = function (result) {
             });   
 };
 User.updateById = function(id, user, result){
-  sql.query("UPDATE users SET user = ? WHERE id = ?", [user.user, id], function (err, res) {
+  sql.query("UPDATE user SET user = ? WHERE id = ?", [user.user, id], function (err, res) {
           if(err) {
               console.log("error: ", err);
                 result(null, err);
@@ -59,7 +59,7 @@ User.updateById = function(id, user, result){
             }); 
 };
 User.remove = function(id, result){
-     sql.query("DELETE FROM users WHERE id = ?", [id], function (err, res) {
+     sql.query("DELETE FROM user WHERE user_id = ?", [id], function (err, res) {
 
                 if(err) {
                     console.log("error: ", err);
@@ -70,6 +70,6 @@ User.remove = function(id, result){
                  result(null, res);
                 }
             }); 
-};*/
+};
 
 module.exports= User;
