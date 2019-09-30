@@ -1,14 +1,15 @@
 'user strict';
 var sql = require('../db.js');
 
-//Task object constructor
-var Task = function(task){
-    this.task = task.task;
-    this.status = task.status;
-    this.created_at = new Date();
+//User object constructor
+var User = function(user){
+    this.user = user.user;
+    this.first_name = user.first_name;
+    this.last_name = user.last_name;
+    this.email = user.email;
 };
-Task.createTask = function (newTask, result) {    
-        sql.query("INSERT INTO tasks set ?", newTask, function (err, res) {
+User.createUser = function (newUser, result) {    
+        sql.query("INSERT INTO user set ?", newUser, function (err, res) {
                 
                 if(err) {
                     console.log("error: ", err);
@@ -20,8 +21,8 @@ Task.createTask = function (newTask, result) {
                 }
             });           
 };
-Task.getTaskById = function (taskId, result) {
-        sql.query("Select task from tasks where id = ? ", taskId, function (err, res) {             
+/*User.getUserById = function (user_id, result) {
+        sql.query("Select user from users where id = ? ", user_id, function (err, res) {             
                 if(err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -32,22 +33,22 @@ Task.getTaskById = function (taskId, result) {
                 }
             });   
 };
-Task.getAllTask = function (result) {
-        sql.query("Select * from tasks", function (err, res) {
+User.getAllUser = function (result) {
+        sql.query("Select * from users", function (err, res) {
 
                 if(err) {
                     console.log("error: ", err);
                     result(null, err);
                 }
                 else{
-                  console.log('tasks : ', res);  
+                  console.log('users : ', res);  
 
                  result(null, res);
                 }
             });   
 };
-Task.updateById = function(id, task, result){
-  sql.query("UPDATE tasks SET task = ? WHERE id = ?", [task.task, id], function (err, res) {
+User.updateById = function(id, user, result){
+  sql.query("UPDATE users SET user = ? WHERE id = ?", [user.user, id], function (err, res) {
           if(err) {
               console.log("error: ", err);
                 result(null, err);
@@ -57,8 +58,8 @@ Task.updateById = function(id, task, result){
                 }
             }); 
 };
-Task.remove = function(id, result){
-     sql.query("DELETE FROM tasks WHERE id = ?", [id], function (err, res) {
+User.remove = function(id, result){
+     sql.query("DELETE FROM users WHERE id = ?", [id], function (err, res) {
 
                 if(err) {
                     console.log("error: ", err);
@@ -69,6 +70,6 @@ Task.remove = function(id, result){
                  result(null, res);
                 }
             }); 
-};
+};*/
 
-module.exports= Task;
+module.exports= User;

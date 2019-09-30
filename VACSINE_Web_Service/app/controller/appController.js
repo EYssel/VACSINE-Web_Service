@@ -1,73 +1,73 @@
 'use strict';
 
-var Task = require('../model/appModel.js');
+var User = require('../model/appModel.js');
 
-exports.list_all_tasks = function(req, res) {
-  Task.getAllTask(function(err, task) {
+exports.list_all_users = function(req, res) {
+  User.getAllUser(function(err, user) {
 
     console.log('controller')
     if (err)
       res.send(err);
-      console.log('res', task);
-    res.send(task);
+      console.log('res', user);
+    res.send(user);
   });
 };
 
 
 
-exports.create_a_task = function(req, res) {
-  var new_task = new Task(req.body);
+exports.create_a_user = function(req, res) {
+  var new_user = new User(req.body);
 
   //handles null error 
-  if(!new_task.task || !new_task.status){
+  if(!new_user.user || !new_user.status){
 
-    res.status(400).send({ error:true, message: 'Please provide task/status' });
+    res.status(400).send({ error:true, message: 'Please provide user/status' });
 
 }
 else{
 
-Task.createTask(new_task, function(err, task) {
+User.createUser(new_user, function(err, user) {
 
 if (err)
 res.send(err);
-res.json(task);
+res.json(user);
 });
 }
 };
 
 
-exports.read_a_task = function(req, res) {
-Task.getTaskById(req.params.taskId, function(err, task) {
+exports.read_a_user = function(req, res) {
+User.getUserById(req.params.userId, function(err, user) {
 if (err)
 res.send(err);
-res.json(task);
+res.json(user);
 });
 };
 
 
-exports.update_a_task = function(req, res) {
-Task.updateById(req.params.taskId, new Task(req.body), function(err, task) {
+exports.update_a_user = function(req, res) {
+User.updateById(req.params.userId, new User(req.body), function(err, user) {
 if (err)
 res.send(err);
-res.json(task);
+res.json(user);
 });
 };
 
-exports.update_a_task = function(req, res) {
-    Task.updateById(req.params.taskId, new Task(req.body), function(err, task) {
+exports.update_a_user = function(req, res) {
+    User.updateById(req.params.userId, new User(req.body), function(err, user) {
       if (err)
         res.send(err);
-      res.json(task);
+      res.json(user);
     });
   };
   
   
-  exports.delete_a_task = function(req, res) {
+  exports.delete_a_user = function(req, res) {
   
   
-    Task.remove( req.params.taskId, function(err, task) {
+    User.remove( req.params.userId, function(err, user) {
       if (err)
         res.send(err);
-      res.json({ message: 'Task successfully deleted' });
+      res.json({ message: 'User successfully deleted' });
     });
   };
