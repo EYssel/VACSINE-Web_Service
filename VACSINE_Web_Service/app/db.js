@@ -6,8 +6,8 @@ var mysql = require('mysql');
 var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : '',
-    database : 'mydb'
+    password : 'admin',
+    database : 'vacsinedb'
 });
 
 connection.connect(function(err) {
