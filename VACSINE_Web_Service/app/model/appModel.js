@@ -47,10 +47,10 @@ User.getUsersForSite = function (site_id, result) {
     });
 };
 
-User.setUserIdentified = function (identifiedId, userId, result) {
+User.setUserIdentified = function (identifiedId, jsonBody, result) {
     console.log(identifiedId)
     console.log(JSON.stringify(userId))
-    sql.query("UPDATE identified_person SET user_id = ? WHERE identified_id = ?", [userId.user_id, identifiedId], function (err, res) {
+    sql.query("UPDATE identified_person SET user_id = ?, is_owner = ? WHERE identified_id = ?", [jsonBody.user_id, jsonBody.is_owner, identifiedId], function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null)
@@ -69,7 +69,6 @@ User.getAllUser = function (result) {
         }
         else {
             console.log('users : ', res);
-
             result(null, res);
         }
     });

@@ -3,6 +3,9 @@ const express = require('express'),
   bodyParser = require('body-parser');
 port = process.env.PORT || 3000;
 
+var cors = require('cors');
+
+app.use(cors());
 
 const mysql = require('mysql');
 // connection configurations
@@ -11,7 +14,6 @@ const mc = mysql.createConnection({
   user: 'root',
   password: '',
   database: 'mydb',
-
 });
 
 // connect to database
