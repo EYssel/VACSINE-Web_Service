@@ -2,72 +2,115 @@
 
 var User = require('../model/appModel.js');
 
-exports.list_all_users = function(req, res) {
-  User.getAllUser(function(err, user) {
+exports.list_all_users = function (req, res) {
+  User.getAllUser(function (err, user) {
 
     console.log('controller')
     if (err)
       res.send(err);
-      console.log('res', user);
+    console.log('res', user);
     res.send(user);
-  });audit 
+  });
 };
 
 
 
-exports.create_a_user = function(req, res) {
+exports.create_a_user = function (req, res) {
   var new_user = new User(req.body);
 
   //handles null error 
   //if(!new_user.user || !new_user.status){
 
-    //res.status(400).send({ error:true, message: 'Please provide user/status' });
+  //res.status(400).send({ error:true, message: 'Please provide user/status' });
 
-//}
-//else{
+  //}
+  //else{
 
-User.createUser(new_user, function(err, user) {
+  User.createUser(new_user, function (err, user) {
 
-if (err)
-res.send(err);
-res.json(user);
-});
+    if (err)
+      res.send(err);
+    res.json(user);
+  });
 }
-;
+  ;
 
 
-exports.read_a_user = function(req, res) {
-User.getUserById(req.params.userId, function(err, user) {
-if (err)
-res.send(err);
-res.json(user);
-});
+exports.read_a_user = function (req, res) {
+  User.getUserById(req.params.userId, function (err, user) {
+    if (err)
+      res.send(err);
+    res.json(user);
+  });
 };
 
 
-exports.update_a_user = function(req, res) {
-User.updateById(req.params.userId, new User(req.body), function(err, user) {
-if (err)
-res.send(err);
-res.json(user);
-});
+exports.update_a_user = function (req, res) {
+  User.updateById(req.params.userId, new User(req.body), function (err, user) {
+    if (err)
+      res.send(err);
+    res.json(user);
+  });
 };
 
-exports.update_a_user = function(req, res) {
-    User.updateById(req.params.userId, new User(req.body), function(err, user) {
-      if (err)
-        res.send(err);
-      res.json(user);
-    });
-  };
-  
-  
-  exports.delete_a_user = function(req, res) {
-  
-  
-    User.remove( req.params.userId, function(err, user) {
-      if (err)
-        res.send(err);
-      res.json({ message: 'User successfully deleted' });
-    });
-  };
+exports.update_a_user = function (req, res) {
+  User.updateById(req.params.userId, new User(req.body), function (err, user) {
+    if (err)
+      res.send(err);
+    res.json(user);
+  });
+};
+
+
+exports.delete_a_user = function (req, res) {
+
+
+  User.remove(req.params.userId, function (err, user) {
+    if (err)
+      res.send(err);
+    res.json({ message: 'User successfully deleted' });
+  });
+};
+
+exports.list_all_persons = function (req, res) {
+  User.getAllPersons(function (err, user) {
+
+    console.log('controller')
+    if (err)
+      res.send(err);
+    console.log('res', user);
+    res.send(user);
+  });
+};
+
+exports.update_status = function (req, res) {
+  User.updateStatus(req.params.siteId, req.body.person_identified, function (err, user) {
+    if (err)
+      res.send(err);
+    res.json(user)
+  });
+};
+
+exports.get_status = function (req, res) {
+  User.getStatus(req.params.siteId, function (err, user) {
+    if(err)
+      res.send(err);
+    res.json(user);
+  });
+};
+
+exports.allow_entry = function (req, res) {
+  User.allowEntry(req.params.siteId, function (err, user) {
+    if (err)
+      res.send(err);
+    res.json(user)
+  });
+};
+
+exports.disallow_entry = function (req, res) {
+  User.disallowEntry(req.params.siteId, function (err, user) {
+    if (err)
+      res.send(err);
+    res.json(user)
+  });
+};
