@@ -134,10 +134,18 @@ exports.capture_person = function (req, res) {
   });
 };
 
-/*exports.capture_person = function (req, res) {
-  User.capturePerson(req.params.siteId, req.body.capture_person, function (err, user) {
+exports.upload_photo = function (req, res) {
+  User.uploadPhoto(req.params.siteId, req.body.photo_url, function (err, user) {
     if (err)
       res.send(err);
     res.json(user)
   });
-};*/
+};
+
+exports.read_sites = function (req, res) {
+  User.readSites(function (err, user) {
+    if (err)
+      res.send(err);
+    res.json(user)
+  });
+};

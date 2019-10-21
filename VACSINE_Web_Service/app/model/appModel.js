@@ -33,8 +33,8 @@ User.createPerson = function (name, surname, user_id, site_id, result) {
         else {
             console.log("Person inserted");
         }
-    })
-}
+    });
+};
 
 User.updatePerson = function (personId, name, surname, user_id, site_id, result) {
     sql.query("UPDATE person SET name = ?, surname = ?, user_id = ?, site_id = ?  WHERE person_id = ?", [name, surname, user_id, site_id, personId], function (err, res) {
@@ -141,6 +141,19 @@ User.readUserSites = function (user_id, result) {
             console.log('user sites : ', res)
             result(null, res);
         }
+    });
+};
+
+User.readSites = function (result) {
+    sql.query("SELECT * FROM site", function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null, err);
+        }
+        else {
+            console.log('sites : ', res);
+            result(null, res);
+        }
     })
 }
 
@@ -156,7 +169,7 @@ User.updateStatus = function (siteId, personId, result) {
             result(null, res);
         }
     });
-}
+};
 
 User.getStatus = function (siteId, result) {
     sql.query("SELECT * FROM status WHERE site_id = ?", siteId, function (err, res) {
@@ -168,7 +181,7 @@ User.getStatus = function (siteId, result) {
             result(null, res);
         }
     })
-}
+};
 
 User.allowEntry = function (siteId, result) {
     //console.log('PersonId = ' + personId)
@@ -182,7 +195,7 @@ User.allowEntry = function (siteId, result) {
             result(null, res);
         }
     });
-}
+};
 
 User.disallowEntry = function (siteId, result) {
     //console.log('PersonId = ' + personId)
@@ -196,7 +209,7 @@ User.disallowEntry = function (siteId, result) {
             result(null, res);
         }
     });
-}
+};
 
 User.capturePerson = function (siteId, personId, result) {
     console.log('PersonId = ' + personId)
@@ -210,6 +223,18 @@ User.capturePerson = function (siteId, personId, result) {
             result(null, res);
         }
     });
+};
+
+User.uploadPhoto = function (siteId, photo_url, result) {
+    sql.query("UPDATE status SET photo_url = ? WHERE site_id = ?", [photo_url, siteId], function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+        }
+        else {
+            result(null, res);
+        }
+    })
 }
 
 

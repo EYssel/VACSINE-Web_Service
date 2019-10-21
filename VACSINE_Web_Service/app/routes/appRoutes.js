@@ -23,6 +23,9 @@ module.exports = function(app) {
   app.route('/user-sites/:userId')
     .get(todoList.read_user_sites)
 
+  app.route('/sites')
+    .get(todoList.read_sites)
+  
   app.route('/status/:siteId')
     .put(todoList.update_status)
     .get(todoList.get_status)
@@ -33,6 +36,6 @@ module.exports = function(app) {
   app.route('/capture/:siteId')
     .put(todoList.capture_person)
 
-  //app.route('/upload-photo')
-  //  .put(todoList.upload_photo)
+  app.route('/upload-photo')
+    .put(todoList.upload_photo)
 };
