@@ -91,7 +91,6 @@ User.updateById = function (id, user, result) {
 
 User.remove = function (id, result) {
     sql.query("DELETE FROM user WHERE user_id = ?", [id], function (err, res) {
-
         if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -102,6 +101,19 @@ User.remove = function (id, result) {
         }
     });
 };
+
+User.deletePerson = function (person_id, result) {
+    sql.query("DELETE FROM person WHERE person_id = ?", person_id, function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+        }
+        else {
+
+            result(null, res);
+        }
+    })
+}
 
 User.getAllPersons = function (result) {
     sql.query("SELECT person_id FROM PERSON", function (err, res) {

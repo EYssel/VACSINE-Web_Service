@@ -27,7 +27,7 @@ exports.create_a_user = function (req, res) {
 
 exports.create_a_person = function (req, res) {
   User.createPerson(req.body.name, req.body.surname, req.body.user_id, req.body.site_id, function (err, user) {
-    if(err)
+    if (err)
       res.send(err);
     res.json(user)
   });
@@ -60,12 +60,18 @@ exports.update_a_person = function (req, res) {
 }
 
 exports.delete_a_user = function (req, res) {
-
-
   User.remove(req.params.userId, function (err, user) {
     if (err)
       res.send(err);
     res.json({ message: 'User successfully deleted' });
+  });
+};
+
+exports.delete_a_person = function (req, res) {
+  User.deletePerson(req.params.personId, function (err, user) {
+    if (err)
+      res.send(err);
+    res.json({ message: 'Person successfully deleted' });
   });
 };
 
