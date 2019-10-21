@@ -17,23 +17,21 @@ exports.list_all_users = function (req, res) {
 
 exports.create_a_user = function (req, res) {
   var new_user = new User(req.body);
-
-  //handles null error 
-  //if(!new_user.user || !new_user.status){
-
-  //res.status(400).send({ error:true, message: 'Please provide user/status' });
-
-  //}
-  //else{
-
   User.createUser(new_user, function (err, user) {
 
     if (err)
       res.send(err);
     res.json(user);
   });
-}
-  ;
+};
+
+exports.create_a_person = function (req, res) {
+  User.createPerson(req.body.name, req.body.surname, req.body.user_id, req.body.site_id, function (err, user) {
+    if(err)
+      res.send(err);
+    res.json(user)
+  });
+};
 
 
 exports.read_a_user = function (req, res) {
@@ -93,7 +91,7 @@ exports.update_status = function (req, res) {
 
 exports.get_status = function (req, res) {
   User.getStatus(req.params.siteId, function (err, user) {
-    if(err)
+    if (err)
       res.send(err);
     res.json(user);
   });
@@ -122,3 +120,11 @@ exports.capture_person = function (req, res) {
     res.json(user)
   });
 };
+
+/*exports.capture_person = function (req, res) {
+  User.capturePerson(req.params.siteId, req.body.capture_person, function (err, user) {
+    if (err)
+      res.send(err);
+    res.json(user)
+  });
+};*/
