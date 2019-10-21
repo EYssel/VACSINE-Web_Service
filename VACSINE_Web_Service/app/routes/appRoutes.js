@@ -17,8 +17,8 @@ module.exports = function(app) {
     .post(todoList.create_a_person)
 
   app.route('/persons/:personId')
-    //.put(todoList.update_a_person)
-    //.delete(todoList.delete_a_person)
+    .put(todoList.update_a_person)
+    .delete(todoList.delete_a_person)
 
   app.route('/status/:siteId')
     .put(todoList.update_status)

@@ -36,6 +36,18 @@ User.createPerson = function (name, surname, user_id, site_id, result) {
     })
 }
 
+User.updatePerson = function (personId, name, surname, user_id, site_id, result) {
+    sql.query("UPDATE person SET name = ?, surname = ?, user_id = ?, site_id = ?  WHERE person_id = ?", [name, surname, user_id, site_id, personId], function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+        }
+        else {
+            result(null, res);
+        }
+    });
+};
+
 User.getUserById = function (user_id, result) {
     sql.query("Select * from user where user_id = ? ", user_id, function (err, res) {
         if (err) {
@@ -80,7 +92,6 @@ User.updateById = function (id, user, result) {
 
 User.remove = function (id, result) {
     sql.query("DELETE FROM user WHERE user_id = ?", [id], function (err, res) {
-
         if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -91,6 +102,19 @@ User.remove = function (id, result) {
         }
     });
 };
+
+User.deletePerson = function (person_id, result) {
+    sql.query("DELETE FROM person WHERE person_id = ?", person_id, function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+        }
+        else {
+
+            result(null, res);
+        }
+    })
+}
 
 User.getAllPersons = function (result) {
     sql.query("SELECT * FROM PERSON", function (err, res) {
