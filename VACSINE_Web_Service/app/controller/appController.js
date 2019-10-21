@@ -114,3 +114,11 @@ exports.disallow_entry = function (req, res) {
     res.json(user)
   });
 };
+
+exports.capture_person = function (req, res) {
+  User.capturePerson(req.params.siteId, req.body.capture_person, function (err, user) {
+    if (err)
+      res.send(err);
+    res.json(user)
+  });
+};

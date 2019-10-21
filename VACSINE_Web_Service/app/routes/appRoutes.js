@@ -22,4 +22,6 @@ module.exports = function(app) {
     .put(todoList.allow_entry)
   app.route('/disallow-entry/:siteId')
     .put(todoList.disallow_entry)
+  app.route('/capture/:siteId')
+    .put(todoList.capture_person)
 };

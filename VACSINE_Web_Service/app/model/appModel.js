@@ -146,5 +146,19 @@ User.disallowEntry = function (siteId, result) {
     });
 }
 
+User.capturePerson = function (siteId, personId, result) {
+    console.log('PersonId = ' + personId)
+    console.log('SiteId = ' + siteId)
+    sql.query("UPDATE status SET capture_person = ? WHERE site_id = ?", [personId, siteId],  function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null, err);
+        }
+        else {
+            result(null, res);
+        }
+    });
+}
+
 
 module.exports= User;
