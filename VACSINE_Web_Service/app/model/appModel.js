@@ -4,9 +4,10 @@ var sql = require('../db.js');
 //User object constructor
 var User = function(user){
     //this.user = user.user;
-    this.first_name = user.first_name;
-    this.last_name = user.last_name;
+    this.name = user.name;
+  
     this.email = user.email;
+    this.password = user.password;
 };
 
 User.createUser = function (newUser, result) {    
