@@ -79,7 +79,7 @@ User.remove = function(id, result){
 };
 
 User.getAllPersons = function (result) {
-    sql.query("SELECT person_id FROM PERSON", function (err, res) {
+    sql.query("SELECT * FROM PERSON", function (err, res) {
 
             if(err) {
                 console.log("error: ", err);
