@@ -130,6 +130,19 @@ User.getAllPersons = function (result) {
     });
 };
 
+User.readUserSites = function (user_id, result) {
+    sql.query("SELECT user_id, site_id FROM user_sites WHERE user_id = ?", user_id, function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null, err);
+        }
+        else {
+            console.log('user sites : ', res)
+            result(null, res);
+        }
+    })
+}
+
 User.updateStatus = function (siteId, personId, result) {
     console.log('PersonId = ' + personId)
     console.log('SiteId = ' + siteId)

@@ -42,6 +42,14 @@ exports.read_a_user = function (req, res) {
   });
 };
 
+exports.read_user_sites = function (req, res) {
+  User.readUserSites(req.params.userId, function (err, user) {
+    if (err)
+      res.send(err);
+    res.json(user);
+  });
+};
+
 
 exports.update_a_user = function (req, res) {
   User.updateById(req.params.userId, new User(req.body), function (err, user) {

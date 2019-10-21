@@ -20,6 +20,9 @@ module.exports = function(app) {
     .put(todoList.update_a_person)
     .delete(todoList.delete_a_person)
 
+  app.route('/user-sites/:userId')
+    .get(todoList.read_user_sites)
+
   app.route('/status/:siteId')
     .put(todoList.update_status)
     .get(todoList.get_status)
@@ -29,4 +32,7 @@ module.exports = function(app) {
     .put(todoList.disallow_entry)
   app.route('/capture/:siteId')
     .put(todoList.capture_person)
+
+  //app.route('/upload-photo')
+  //  .put(todoList.upload_photo)
 };
