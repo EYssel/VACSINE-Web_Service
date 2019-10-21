@@ -51,14 +51,13 @@ exports.update_a_user = function (req, res) {
   });
 };
 
-exports.update_a_user = function (req, res) {
-  User.updateById(req.params.userId, new User(req.body), function (err, user) {
+exports.update_a_person = function (req, res) {
+  User.updatePerson(req.params.personId, req.body.name, req.body.surname, req.body.user_id, req.body.site_id, function (err, user) {
     if (err)
       res.send(err);
     res.json(user);
-  });
-};
-
+  })
+}
 
 exports.delete_a_user = function (req, res) {
 
