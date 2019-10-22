@@ -61,7 +61,7 @@ User.getUserById = function (user_id, result) {
     });
 };
 
-User.getAllPersons = function (person_id, result) {
+User.getPerson = function (person_id, result) {
     sql.query("SELECT * FROM person WHERE person_id = ?", person_id, function (err, res) {
         if (err) {
             console.log("error: ", err);
