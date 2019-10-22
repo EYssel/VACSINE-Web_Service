@@ -50,6 +50,14 @@ exports.read_user_sites = function (req, res) {
   });
 };
 
+exports.read_new_person = function (req, res) {
+  User.readNewPerson(function (err, user) {
+    if(err)
+      res.send(err);
+    res.json(user);
+  })
+}
+
 
 exports.update_a_user = function (req, res) {
   User.updateById(req.params.userId, new User(req.body), function (err, user) {
@@ -142,6 +150,14 @@ exports.upload_photo = function (req, res) {
   });
 };
 
+exports.upload_person_photo = function (req, res) {
+  User.uploadPersonPhoto(req.params.personId, req.body.photo_url, function (err, user) {
+    if (err)
+      res.send(err);
+    res.json(user)
+  });
+};
+
 exports.read_sites = function (req, res) {
   User.readSites(function (err, user) {
     if (err)
@@ -149,3 +165,4 @@ exports.read_sites = function (req, res) {
     res.json(user)
   });
 };
+

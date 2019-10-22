@@ -36,6 +36,12 @@ module.exports = function(app) {
   app.route('/capture/:siteId')
     .put(todoList.capture_person)
 
-  app.route('/upload-photo/:personId')
+  app.route('/upload-photo/:siteId')
     .put(todoList.upload_photo)
+
+  app.route('/upload-person-photo/:personId')
+    .put(todoList.upload_person_photo)
+
+  app.route('/new-person')
+    .get(todoList.read_new_person)
 };

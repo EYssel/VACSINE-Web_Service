@@ -117,19 +117,32 @@ User.deletePerson = function (person_id, result) {
 }
 
 User.getAllPersons = function (result) {
-    sql.query("SELECT * FROM PERSON", function (err, res) {
+    sql.query("SELECT * FROM person", function (err, res) {
 
         if (err) {
             console.log("error: ", err);
             result(null, err);
         }
         else {
-            console.log('users : ', res);
+            console.log('persons: ', res);
 
             result(null, res);
         }
     });
 };
+
+User.readNewPerson = function (result) {
+    sql.query("SELECT * FROM person ORDER BY person_id DESC LIMIT 0, 1", function (err, res) {
+
+        if (err) {
+            console.log("error: ", err)
+        }
+        else {
+            console.log('newest person: ', res)
+            result(null, res);
+        }
+    })
+}
 
 User.readUserSites = function (user_id, result) {
     sql.query("SELECT user_id, site_id FROM user_sites WHERE user_id = ?", user_id, function (err, res) {
@@ -226,7 +239,9 @@ User.capturePerson = function (siteId, personId, result) {
 };
 
 User.uploadPhoto = function (siteId, photo_url, result) {
-    sql.query("UPDATE person SET photo_url = ? WHERE person_id = ?", [photo_url, siteId], function (err, res) {
+    console.log('Site ID: ' + siteId)
+    console.log('Photo URL: '+ photo_url)
+    sql.query("UPDATE status SET photo_url = ? WHERE site_id = ?", [photo_url, siteId], function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -237,6 +252,23 @@ User.uploadPhoto = function (siteId, photo_url, result) {
         }
     })
 }
+
+User.uploadPersonPhoto = function (personId, photo_url, result) {
+    console.log('Person ID: ' + personId)
+    console.log('Photo URL: '+ photo_url)
+    sql.query("UPDATE person SET photo_url = ? WHERE person_id = ?", [photo_url, personId], function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+        }
+        else {
+            console.log('Photo URL Updated')
+            result(null, res);
+        }
+    });
+}
+
+
 
 
 module.exports = User;
