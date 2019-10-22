@@ -118,6 +118,14 @@ exports.get_status = function (req, res) {
   });
 };
 
+exports.get_a_person = function (req, res) {
+  User.getAllPersons(req.params.personId, function (err, user) {
+    if(err)
+      res.send(err);
+    res.json(user)
+  });
+};
+
 exports.allow_entry = function (req, res) {
   User.allowEntry(req.params.siteId, function (err, user) {
     if (err)
