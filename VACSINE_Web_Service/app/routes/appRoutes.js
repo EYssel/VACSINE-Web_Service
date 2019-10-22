@@ -36,6 +36,6 @@ module.exports = function(app) {
   app.route('/capture/:siteId')
     .put(todoList.capture_person)
 
-  app.route('/upload-photo')
+  app.route('/upload-photo/:personId')
     .put(todoList.upload_photo)
 };

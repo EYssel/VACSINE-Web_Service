@@ -226,12 +226,13 @@ User.capturePerson = function (siteId, personId, result) {
 };
 
 User.uploadPhoto = function (siteId, photo_url, result) {
-    sql.query("UPDATE status SET photo_url = ? WHERE site_id = ?", [photo_url, siteId], function (err, res) {
+    sql.query("UPDATE person SET photo_url = ? WHERE person_id = ?", [photo_url, siteId], function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(null, err);
         }
         else {
+            console.log('Photo URL Updated')
             result(null, res);
         }
     })
